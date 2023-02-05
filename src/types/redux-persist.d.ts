@@ -1,7 +1,7 @@
 declare module 'redux-persist/es/persistStore' {
   import {Store, Action, AnyAction} from 'redux';
   import {PersistorOptions, Persistor} from 'redux-persist/es/types';
-  // tslint:disable-next-line: strict-export-declare-modifiers
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   export default function persistStore<S = any, A extends Action<any> = AnyAction>(
     store: Store<S, A>,
     persistorOptions?: PersistorOptions | null,

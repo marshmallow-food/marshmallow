@@ -9,6 +9,11 @@ import {useSelector} from './hooks/useSelector';
 import {themeTypeSelector} from './modules/app/selectors';
 import {useColorScheme} from 'react-native';
 import {Themes} from './theme';
+import * as Sentry from "@sentry/react-native";
+
+Sentry.init({
+  dsn: "https://ad98ed3a950d42ba91e1dde3c8e4ea18@o4504612332306432.ingest.sentry.io/4504612333879296",
+});
 
 const AppThemeProvider = ({children}: {children: ReactNode | ReactNode[]}) => {
   const userSelectedThemeType = useSelector(themeTypeSelector);
@@ -38,4 +43,4 @@ const AppComponent = (): JSX.Element => {
   );
 };
 
-export default memo(AppComponent);
+export default memo(Sentry.wrap(AppComponent));

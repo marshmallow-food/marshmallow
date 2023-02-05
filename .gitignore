@@ -90,3 +90,5 @@ screenshots
 /src/constants/environment/index.ts
 
 /builds
+/ios/sentry.properties
+/android/sentry.properties
