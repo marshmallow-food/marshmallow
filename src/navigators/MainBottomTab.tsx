@@ -12,6 +12,7 @@ import {HomePage} from '../screens/Home';
 import {SettingsPage} from '../screens/Settings';
 import {useTheme} from 'styled-components';
 
+
 const {Navigator, Screen} = createBottomTabNavigator<MainBottomTabParamList>();
 
 export type MainBottomTabParamList = {
@@ -56,7 +57,7 @@ export const MainBottomTab = () => {
         options={{
           tabBarLabel: t('home'),
           tabBarIcon: ({color, size}) => (
-            <Icon type="antdesign" name="home" size={size} color={color} />
+            <Icon type="material" name="home" size={size} color={color} />
           ),
         }}
       />
@@ -66,7 +67,7 @@ export const MainBottomTab = () => {
         options={{
           tabBarLabel: t('settings'),
           tabBarIcon: ({color, size}) => (
-            <Icon type="antdesign" name="setting" size={size} color={color} />
+            <Icon type="material" name="settings" size={size} color={color} />
           ),
         }}
       />

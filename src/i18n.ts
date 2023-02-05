@@ -33,6 +33,12 @@ const language =
 
 i18n.language = language;
 
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -45,6 +51,7 @@ i18n
       default: ['en'],
       kk_KZ: ['kz'],
       ru_KZ: ['ru'],
+      ru_RU: ['ru']
     },
     keySeparator: '.',
     interpolation: {

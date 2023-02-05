@@ -38,4 +38,4 @@ const AppComponent = (): JSX.Element => {
   );
 };
 
-export const App  = memo(AppComponent);
+export default memo(AppComponent);
