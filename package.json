@@ -7,8 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "splash": "yarn react-native generate-bootsplash ./publishing/icon.png",
-    "lint": "yarn tsc && eslint . --ext .js,.ts,.tsx --cache",
+    "splash": "react-native generate-bootsplash ./publishing/icon.png",
+    "lint": "tsc && eslint . --ext .js,.ts,.tsx --cache",
     "icon": "npx app-icon generate -i publishing/icon.png"
   },
   "dependencies": {
