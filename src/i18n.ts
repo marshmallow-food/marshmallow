@@ -51,7 +51,8 @@ i18n
       default: ['en'],
       kk_KZ: ['kz'],
       ru_KZ: ['ru'],
-      ru_RU: ['ru']
+      ru_RU: ['ru'],
+      en_US: ['en']
     },
     keySeparator: '.',
     interpolation: {

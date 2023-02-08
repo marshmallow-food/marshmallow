@@ -92,3 +92,4 @@ screenshots
 /builds
 /ios/sentry.properties
 /android/sentry.properties
+/ios/Podfile.lock
