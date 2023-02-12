@@ -1,5 +1,5 @@
-import {RootState} from '../../store';
-import {Themes} from '../../theme';
+import {RootState} from 'src/store';
+import {Themes} from 'src/theme';
 
 export const themeTypeSelector = (state: RootState) => state.app.theme;
 
