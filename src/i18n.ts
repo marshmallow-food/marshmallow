@@ -10,12 +10,22 @@ export const resources = {
     translation: {
       home: 'Home',
       settings: 'Settings',
+      signIn: 'Sign in',
+      phoneNumber: 'Phone number',
+      getCode: 'Get code',
+      otpCode: 'Code',
+      goBack: 'Back',
     },
   },
   ru: {
     translation: {
       home: 'Главная',
       settings: 'Настройки',
+      signIn: 'Вход',
+      phoneNumber: 'Номер телефона',
+      getCode: 'Получить код',
+      otpCode: 'Проверочный код',
+      goBack: 'Назад',
     },
   },
   kz: {
@@ -52,7 +62,7 @@ i18n
       kk_KZ: ['kz'],
       ru_KZ: ['ru'],
       ru_RU: ['ru'],
-      en_US: ['en']
+      en_US: ['en'],
     },
     keySeparator: '.',
     interpolation: {
