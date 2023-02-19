@@ -15,6 +15,7 @@ interface ButtonProps {
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   icon?: React.ReactNode;
+  underlayColor?: string;
 }
 
 const Button = ({
@@ -25,6 +26,7 @@ const Button = ({
   buttonStyle,
   textStyle,
   icon,
+  underlayColor,
 }: ButtonProps) => {
   return (
     <TouchableHighlight
@@ -32,6 +34,7 @@ const Button = ({
         ...buttonStyle,
         backgroundColor: buttonColor,
       }}
+      underlayColor={underlayColor}
       onPress={onPress}>
       <View>
         {icon}

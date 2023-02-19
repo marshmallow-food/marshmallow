@@ -1,12 +1,16 @@
 import React from 'react';
 import TextInputMask from 'react-native-text-input-mask';
 import {KeyboardTypeOptions, StyleSheet, Text, View} from 'react-native';
+import {Themes} from 'src/theme';
+import {useSelector} from 'src/hooks/useSelector';
+import {themeTypeSelector} from 'src/modules/app/selectors';
 
 interface InputAdapterProps {
-  mask: string;
+  mask?: string;
+  containerStyle?: object;
   keyboardType?: KeyboardTypeOptions;
-  label: string;
-  onChangeText: (extracted: string | undefined) => void;
+  label?: string;
+  onChangeText: (extracted?: string) => void;
   value: string;
   placeholder?: string;
 }
@@ -18,15 +22,19 @@ const InputAdapter = ({
   value,
   onChangeText,
   placeholder,
+  containerStyle,
 }: InputAdapterProps) => {
+  const theme = Themes[useSelector(themeTypeSelector)];
+
   return (
-    <View style={styles.wrapper}>
-      <Text style={styles.label}>{label}</Text>
+    <View style={[styles.container, containerStyle]}>
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInputMask
         onChangeText={(formatted, extracted) => {
           onChangeText(extracted);
         }}
         placeholder={placeholder}
+        placeholderTextColor={theme.colors.placeholder}
         value={value}
         style={styles.inputMask}
         mask={mask}
@@ -37,23 +45,28 @@ const InputAdapter = ({
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
+  container: {
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   inputMask: {
-    borderWidth: 2,
-    borderRadius: 6,
+    borderWidth: 0,
+    borderRadius: 32,
     width: '100%',
-    padding: 12,
-    color: 'black',
-    fontSize: 20,
+    paddingTop: 13,
+    paddingBottom: 13,
+    paddingLeft: 22,
+    backgroundColor: '#F2F2F2',
+    color: '#101829',
+    fontSize: 16,
+    fontFamily: 'Lato-Regular',
   },
   label: {
     color: 'black',
     paddingBottom: 20,
-    fontSize: 20,
+    fontSize: 22,
+    fontFamily: 'Lato-Semibold',
   },
 });
 

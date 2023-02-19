@@ -4,12 +4,14 @@ import {
 } from '@react-navigation/native-stack';
 import {SplashScreen} from 'src/screens/SplashScreen';
 import {WelcomeScreen} from '../screens/Welcome';
-import {AuthenticationScreen} from '../screens/Authentication';
-import {OTPScreen} from '../screens/OTP';
+import {
+  AuthenticationScreen,
+  AuthenticationScreenOptions,
+} from '../screens/Authentication';
+import {OTPScreen, OTPScreenOptions} from '../screens/OTP';
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
-import Button from 'src/components/dumb/Button';
 
 const {Screen, Navigator} = createNativeStackNavigator<AuthStackParamList>();
 
@@ -43,6 +45,7 @@ export const AuthStack = () => {
         headerShown: true,
         title: t('signIn'),
         headerTitleAlign: 'center',
+        headerShadowVisible: false,
       }}>
       <Screen name="splash" component={SplashScreen} />
       <Screen
@@ -55,17 +58,9 @@ export const AuthStack = () => {
       <Screen
         name="authentication"
         component={AuthenticationScreen}
-        options={() => ({
-          headerLeft: () => <Button />,
-        })}
+        options={AuthenticationScreenOptions}
       />
-      <Screen
-        name="otp"
-        component={OTPScreen}
-        options={() => ({
-          headerLeft: () => <Button />,
-        })}
-      />
+      <Screen name="otp" component={OTPScreen} options={OTPScreenOptions} />
     </Navigator>
   );
 };

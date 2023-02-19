@@ -23,6 +23,7 @@ const AppThemeProvider = ({children}: {children: ReactNode | ReactNode[]}) => {
       ? systemThemeType
       : userSelectedThemeType;
   const theme = Themes[themeType];
+
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={theme.barStyle} />

@@ -9,19 +9,23 @@ import {
 import styled from 'styled-components';
 import InputAdapter from 'src/components/dumb/InputAdapter';
 import Button from 'src/components/dumb/Button';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {
+  NativeStackNavigationOptions,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import {AuthStackParamList} from 'src/navigators/AuthStack';
 import {Themes} from 'src/theme';
 import {useSelector} from 'src/hooks/useSelector';
 import {themeTypeSelector} from 'src/modules/app/selectors';
 import {useForm, Controller} from 'react-hook-form';
 import Icon from 'react-native-easy-icon';
+import {useNavigation} from '@react-navigation/native';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Wrapper = styled(View)`
@@ -31,7 +35,7 @@ const Wrapper = styled(View)`
   width: 100%;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 type OTPPageProps = NativeStackScreenProps<AuthStackParamList, 'otp'>;
@@ -39,59 +43,6 @@ type OTPPageProps = NativeStackScreenProps<AuthStackParamList, 'otp'>;
 const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
   const {t} = useTranslation();
   const theme = Themes[useSelector(themeTypeSelector)];
-
-  React.useEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          buttonColor={theme.colors.dimGray}
-          buttonStyle={{
-            borderRadius: 20,
-            width: 50,
-            height: 30,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          icon={
-            <Icon
-              type="antdesign"
-              name="arrowleft"
-              size={20}
-              color={theme.colors.black}
-            />
-          }
-        />
-      ),
-    });
-  }, [navigation]);
-  React.useEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          buttonColor={theme.colors.dimGray}
-          buttonStyle={{
-            borderRadius: 20,
-            width: 50,
-            height: 30,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          icon={
-            <Icon
-              type="material"
-              name="arrow-back"
-              size={20}
-              color={theme.colors.black}
-            />
-          }
-        />
-      ),
-    });
-  }, [navigation]);
 
   const {
     control,
@@ -130,12 +81,12 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
             name="code"
           />
           <Button
-            title={t('continue')}
+            title={t('getCode')}
             onPress={() => navigation.navigate('otp')}
-            buttonColor={theme.colors.dimGray}
-            titleColor={theme.colors.greenGray}
+            buttonColor={theme.colors.primary}
+            titleColor={theme.colors.white}
             buttonStyle={{
-              width: '80%',
+              width: '100%',
               alignSelf: 'center',
               borderRadius: 20,
               padding: 15,
@@ -148,4 +99,38 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
   );
 };
 
+const OTPScreenOptions: NativeStackNavigationOptions = {
+  headerLeft: () => {
+    const theme = Themes[useSelector(themeTypeSelector)];
+    const navigation = useNavigation();
+
+    const handleBackButtonPress = () => {
+      navigation.goBack();
+    };
+    return (
+      <Button
+        onPress={handleBackButtonPress}
+        buttonColor={theme.colors.white}
+        buttonStyle={{
+          borderRadius: 20,
+          width: 50,
+          height: 30,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        icon={
+          <Icon
+            type="material"
+            name="arrow-back"
+            size={20}
+            color={theme.colors.black}
+          />
+        }
+      />
+    );
+  },
+};
+
+export {OTPScreenOptions};
 export const OTPScreen = memo(OTPPageComponent);

@@ -15,23 +15,25 @@ import {Themes} from 'src/theme';
 import {useSelector} from 'src/hooks/useSelector';
 import {themeTypeSelector} from 'src/modules/app/selectors';
 import {useForm, Controller} from 'react-hook-form';
-import Icon from 'react-native-easy-icon';
+import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import ArrowLeft from 'src/components/icons/ArrowLeft';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Wrapper = styled(View)`
   flex: 1;
-  padding: 20px;
+  padding: 15px;
   gap: 20px;
   width: 100%;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 type AuthPageProps = NativeStackScreenProps<
@@ -39,8 +41,9 @@ type AuthPageProps = NativeStackScreenProps<
   'authentication'
 >;
 
-const AuthPageComponent = ({navigation}: AuthPageProps): JSX.Element => {
+const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
   const {t} = useTranslation();
+  const theme = Themes[useSelector(themeTypeSelector)];
   const {
     control,
     handleSubmit,
@@ -50,38 +53,11 @@ const AuthPageComponent = ({navigation}: AuthPageProps): JSX.Element => {
       phone: '+7 ',
     },
   });
-  React.useEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          buttonColor={theme.colors.dimGray}
-          buttonStyle={{
-            borderRadius: 20,
-            width: 50,
-            height: 30,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          icon={
-            <Icon
-              type="material"
-              name="arrow-back"
-              size={20}
-              color={theme.colors.black}
-            />
-          }
-        />
-      ),
-    });
-  }, [navigation]);
 
   const onSubmit = () => {
     navigation.navigate('otp');
   };
 
-  const theme = Themes[useSelector(themeTypeSelector)];
   return (
     //TODO: - Write hoc Component for TouchableWithoutFeedback
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -99,7 +75,7 @@ const AuthPageComponent = ({navigation}: AuthPageProps): JSX.Element => {
                 value={value}
                 label={t('phoneNumber')}
                 mask={'+7 [000] [000]-[00]-[00]'}
-                keyboardType={'numeric'}
+                keyboardType={'phone-pad'}
                 onChangeText={(extracted) => onChange(`+7${extracted}`)}
                 placeholder="+7"
               />
@@ -109,13 +85,14 @@ const AuthPageComponent = ({navigation}: AuthPageProps): JSX.Element => {
           <Button
             title={t('getCode')}
             onPress={handleSubmit(onSubmit)}
-            buttonColor={theme.colors.dimGray}
-            titleColor={theme.colors.greenGray}
+            buttonColor={theme.colors.primary}
+            titleColor={theme.colors.white}
             buttonStyle={{
-              width: '80%',
+              width: '100%',
               alignSelf: 'center',
-              borderRadius: 20,
-              padding: 15,
+              borderRadius: 10,
+              paddingTop: 13,
+              paddingBottom: 13,
             }}
             textStyle={{fontSize: 20, textAlign: 'center'}}
           />
@@ -125,4 +102,29 @@ const AuthPageComponent = ({navigation}: AuthPageProps): JSX.Element => {
   );
 };
 
-export const AuthenticationScreen = memo(AuthPageComponent);
+const AuthenticationScreenOptions: NativeStackNavigationOptions = {
+  headerLeft: () => {
+    const theme = Themes[useSelector(themeTypeSelector)];
+    const navigation = useNavigation();
+
+    const handleBackButtonPress = () => {
+      navigation.goBack();
+    };
+    return (
+      <Button
+        onPress={handleBackButtonPress}
+        buttonColor={theme.colors.white}
+        underlayColor={theme.colors.white}
+        buttonStyle={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        icon={<ArrowLeft />}
+      />
+    );
+  },
+};
+
+export {AuthenticationScreenOptions};
+export const AuthenticationScreen = memo(AuthScreen);

@@ -13,7 +13,7 @@ const Container = styled(SafeAreaView)`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Wrapper = styled(View)`
@@ -37,8 +37,8 @@ const WelcomePageComponent = ({navigation}: WelcomePageProps): JSX.Element => {
         <Button
           title={t('signIn')}
           onPress={() => navigation.navigate('authentication')}
-          buttonColor={theme.colors.dimGray}
-          titleColor={theme.colors.greenGray}
+          buttonColor={theme.colors.primary}
+          titleColor={theme.colors.white}
           buttonStyle={{
             width: '100%',
             alignSelf: 'center',
