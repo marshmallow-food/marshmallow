@@ -15,6 +15,7 @@ export const resources = {
       getCode: 'Get code',
       otpCode: 'Code',
       goBack: 'Back',
+      codeFromSMS: 'Verify code',
     },
   },
   ru: {
@@ -26,6 +27,7 @@ export const resources = {
       getCode: 'Получить код',
       otpCode: 'Проверочный код',
       goBack: 'Назад',
+      codeFromSMS: 'Код из смс',
     },
   },
   kz: {

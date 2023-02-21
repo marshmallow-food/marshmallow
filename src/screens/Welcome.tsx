@@ -37,15 +37,20 @@ const WelcomePageComponent = ({navigation}: WelcomePageProps): JSX.Element => {
         <Button
           title={t('signIn')}
           onPress={() => navigation.navigate('authentication')}
-          buttonColor={theme.colors.primary}
-          titleColor={theme.colors.white}
           buttonStyle={{
             width: '100%',
             alignSelf: 'center',
             borderRadius: 20,
             padding: 15,
+            backgroundColor: theme.colors.primary,
           }}
-          textStyle={{fontSize: 20, textAlign: 'center'}}
+          titleStyle={{
+            fontSize: 20,
+            textAlign: 'center',
+            fontFamily: 'Lato-Semibold',
+            color: theme.colors.white,
+            lineHeight: 24,
+          }}
         />
       </Wrapper>
     </Container>

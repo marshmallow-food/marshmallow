@@ -1,8 +1,9 @@
 export const Colors = {
-  white: '#ffffff',
+  white: '#FFFFFF',
   black: '#000000',
-  inputGray: '#f2f2f2',
-  primary: '#f99c00',
+  inputGray: '#F2F2F2',
+  primary: '#F99C00',
   fontMain: '#101829',
-  placeholder: '#7e798987',
+  placeholder: '#7E798987',
+  error: '#C51C07',
 };

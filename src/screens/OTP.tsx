@@ -1,10 +1,12 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   SafeAreaView,
   View,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView,
   Keyboard,
+  Platform,
 } from 'react-native';
 import styled from 'styled-components';
 import InputAdapter from '../components/dumb/InputAdapter';
@@ -24,18 +26,15 @@ import ArrowLeft from '../components/icons/ArrowLeft';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
-  align-items: center;
-  justify-content: center;
   background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Wrapper = styled(View)`
   flex: 1;
   padding: 20px;
-  gap: 20px;
   width: 100%;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: ${(props) => props.theme.colors.white};
 `;
 
@@ -44,64 +43,85 @@ type OTPPageProps = NativeStackScreenProps<AuthStackParamList, 'otp'>;
 const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
   const {t} = useTranslation();
   const theme = Themes[useSelector(themeTypeSelector)];
+  const [keyboardActive, setKeyboardActive] = useState(false);
 
   const {
     control,
-    handleSubmit,
-    formState: {errors},
+    formState: {isValid, isSubmitting},
   } = useForm({
     defaultValues: {
       code: '',
     },
   });
-  const onSubmit = () => {
-    // console.log('submitted')
+
+  const showKeyboard = () => {
+    setKeyboardActive(true);
   };
+
+  const hideKeyboard = () => {
+    setKeyboardActive(false);
+    Keyboard.dismiss();
+  };
+
+  const onSubmit = () => {
+    console.log('submitted');
+  };
+
   return (
-    //TODO: - Write hoc Component for TouchableWithoutFeedback
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <Container>
-        <Wrapper>
-          <Controller
-            control={control}
-            //TODO: - Write validators
-            rules={{
-              required: true,
-              minLength: 4,
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <InputAdapter
-                value={value}
-                label={t('otpCode')}
-                mask={otpMask}
-                keyboardType={'numeric'}
-                onChangeText={(unmasked) => onChange(unmasked)}
-                placeholder="0000"
-              />
-            )}
-            name="code"
-          />
-          <Button
-            title={t('getCode')}
-            onPress={() => navigation.navigate('otp')}
-            buttonColor={theme.colors.primary}
-            titleColor={theme.colors.white}
-            buttonStyle={{
-              width: '100%',
-              alignSelf: 'center',
-              borderRadius: 10,
-              padding: 15,
-            }}
-            textStyle={{
-              fontSize: 20,
-              textAlign: 'center',
-              fontFamily: 'Lato-Semibold',
-              lineHeight: 24,
-            }}
-          />
-        </Wrapper>
-      </Container>
-    </TouchableWithoutFeedback>
+    <Container>
+      <TouchableWithoutFeedback onPress={hideKeyboard} style={{flex: 1}}>
+        <KeyboardAvoidingView
+          style={{flex: 1}}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          keyboardVerticalOffset={keyboardActive ? 100 : 0}>
+          <Wrapper>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+                minLength: 4,
+              }}
+              render={({field: {onChange, onBlur, value}}) => (
+                <InputAdapter
+                  value={value}
+                  onBlur={onBlur}
+                  onFocus={showKeyboard}
+                  label={t('codeFromSMS')}
+                  mask={otpMask}
+                  keyboardType={'numeric'}
+                  onChangeText={(unmasked) => onChange(unmasked)}
+                  placeholder="0000"
+                />
+              )}
+              name="code"
+            />
+            <Button
+              title={t('getCode')}
+              onPress={() => navigation.navigate('otp')}
+              disabled={!isValid || isSubmitting}
+              buttonStyle={{
+                width: '100%',
+                alignSelf: 'center',
+                backgroundColor: theme.colors.primary,
+                borderRadius: 10,
+                paddingTop: 13,
+                paddingBottom: 13,
+              }}
+              titleStyle={{
+                fontSize: 20,
+                textAlign: 'center',
+                fontFamily: 'Lato-Semibold',
+                lineHeight: 24,
+                color: theme.colors.white,
+              }}
+              disabledButtonStyle={{
+                backgroundColor: 'rgba(249, 156, 0, 0.5)',
+              }}
+            />
+          </Wrapper>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+    </Container>
   );
 };
 
@@ -116,7 +136,6 @@ const OTPScreenOptions: NativeStackNavigationOptions = {
     return (
       <Button
         onPress={handleBackButtonPress}
-        buttonColor={theme.colors.white}
         underlayColor={theme.colors.white}
         buttonStyle={{
           display: 'flex',

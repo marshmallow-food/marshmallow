@@ -7,18 +7,18 @@ import {
   Keyboard,
 } from 'react-native';
 import styled from 'styled-components';
-import InputAdapter from 'src/components/dumb/InputAdapter';
-import Button from 'src/components/dumb/Button';
+import InputAdapter from '../components/dumb/InputAdapter';
+import Button from '../components/dumb/Button';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AuthStackParamList} from 'src/navigators/AuthStack';
-import {Themes} from 'src/theme';
-import {useSelector} from 'src/hooks/useSelector';
-import {themeTypeSelector} from 'src/modules/app/selectors';
+import {AuthStackParamList} from '../navigators/AuthStack';
+import {Themes} from '../theme';
+import {useSelector} from '../hooks/useSelector';
+import {themeTypeSelector} from '../modules/app/selectors';
 import {useForm, Controller} from 'react-hook-form';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
-import ArrowLeft from 'src/components/icons/ArrowLeft';
-import {phoneMask} from 'src/lib/mask';
+import ArrowLeft from '../components/icons/ArrowLeft';
+import {phoneMask} from '../lib/mask';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -48,10 +48,10 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: {isValid, isSubmitting},
   } = useForm({
     defaultValues: {
-      phone: '+7 ',
+      phone: '+7',
     },
   });
 
@@ -61,12 +61,11 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
 
   return (
     //TODO: - Write hoc Component for TouchableWithoutFeedback
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <Container>
+    <Container>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Wrapper>
           <Controller
             control={control}
-            //TODO: - Write validators
             rules={{
               required: true,
               minLength: 12,
@@ -77,6 +76,7 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
                 label={t('phoneNumber')}
                 mask={phoneMask}
                 keyboardType={'phone-pad'}
+                onBlur={onBlur}
                 onChangeText={(unmasked) => onChange(unmasked)}
                 placeholder="+7"
               />
@@ -86,25 +86,29 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
           <Button
             title={t('getCode')}
             onPress={handleSubmit(onSubmit)}
-            buttonColor={theme.colors.primary}
-            titleColor={theme.colors.white}
+            disabled={!isValid || isSubmitting}
             buttonStyle={{
               width: '100%',
               alignSelf: 'center',
+              backgroundColor: theme.colors.primary,
               borderRadius: 10,
               paddingTop: 13,
               paddingBottom: 13,
             }}
-            textStyle={{
+            titleStyle={{
               fontSize: 20,
               textAlign: 'center',
               fontFamily: 'Lato-Semibold',
               lineHeight: 24,
+              color: theme.colors.white,
+            }}
+            disabledButtonStyle={{
+              backgroundColor: 'rgba(249, 156, 0, 0.5)',
             }}
           />
         </Wrapper>
-      </Container>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </Container>
   );
 };
 
@@ -119,7 +123,6 @@ const AuthenticationScreenOptions: NativeStackNavigationOptions = {
     return (
       <Button
         onPress={handleBackButtonPress}
-        buttonColor={theme.colors.white}
         underlayColor={theme.colors.white}
         buttonStyle={{
           display: 'flex',

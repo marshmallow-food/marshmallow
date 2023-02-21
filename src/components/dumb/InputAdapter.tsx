@@ -10,9 +10,11 @@ interface InputAdapterProps {
   containerStyle?: object;
   keyboardType?: KeyboardTypeOptions;
   label?: string;
+  onBlur: () => void;
   onChangeText: (extracted?: string) => void;
   value: string;
   placeholder?: string;
+  onFocus?: () => void;
 }
 
 const InputAdapter = ({
@@ -23,6 +25,8 @@ const InputAdapter = ({
   onChangeText,
   placeholder,
   containerStyle,
+  onBlur,
+  onFocus,
 }: InputAdapterProps) => {
   const theme = Themes[useSelector(themeTypeSelector)];
 
@@ -30,9 +34,11 @@ const InputAdapter = ({
     <View style={[styles.container, containerStyle]}>
       {label && <Text style={styles.label}>{label}</Text>}
       <MaskInput
-        onChangeText={(masked, unmasked, obfuscated) => {
+        onChangeText={(masked, unmasked) => {
           onChangeText(unmasked);
         }}
+        onBlur={onBlur}
+        onFocus={onFocus}
         placeholder={placeholder}
         placeholderTextColor={theme.colors.placeholder}
         value={value}
