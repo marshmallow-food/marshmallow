@@ -7,19 +7,20 @@ import {
   Keyboard,
 } from 'react-native';
 import styled from 'styled-components';
-import InputAdapter from 'src/components/dumb/InputAdapter';
-import Button from 'src/components/dumb/Button';
+import InputAdapter from '../components/dumb/InputAdapter';
+import Button from '../components/dumb/Button';
 import {
   NativeStackNavigationOptions,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {AuthStackParamList} from 'src/navigators/AuthStack';
-import {Themes} from 'src/theme';
-import {useSelector} from 'src/hooks/useSelector';
-import {themeTypeSelector} from 'src/modules/app/selectors';
+import {Themes} from '../theme';
+import {useSelector} from '../hooks/useSelector';
+import {themeTypeSelector} from '../modules/app/selectors';
 import {useForm, Controller} from 'react-hook-form';
-import Icon from 'react-native-easy-icon';
 import {useNavigation} from '@react-navigation/native';
+import {otpMask} from '../lib/mask';
+import ArrowLeft from '../components/icons/ArrowLeft';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -72,9 +73,9 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
               <InputAdapter
                 value={value}
                 label={t('otpCode')}
-                mask={'[0000]'}
+                mask={otpMask}
                 keyboardType={'numeric'}
-                onChangeText={(extracted) => onChange(extracted)}
+                onChangeText={(unmasked) => onChange(unmasked)}
                 placeholder="0000"
               />
             )}
@@ -88,10 +89,15 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
             buttonStyle={{
               width: '100%',
               alignSelf: 'center',
-              borderRadius: 20,
+              borderRadius: 10,
               padding: 15,
             }}
-            textStyle={{fontSize: 20, textAlign: 'center'}}
+            textStyle={{
+              fontSize: 20,
+              textAlign: 'center',
+              fontFamily: 'Lato-Semibold',
+              lineHeight: 24,
+            }}
           />
         </Wrapper>
       </Container>
@@ -111,22 +117,13 @@ const OTPScreenOptions: NativeStackNavigationOptions = {
       <Button
         onPress={handleBackButtonPress}
         buttonColor={theme.colors.white}
+        underlayColor={theme.colors.white}
         buttonStyle={{
-          borderRadius: 20,
-          width: 50,
-          height: 30,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        icon={
-          <Icon
-            type="material"
-            name="arrow-back"
-            size={20}
-            color={theme.colors.black}
-          />
-        }
+        icon={<ArrowLeft />}
       />
     );
   },

@@ -1,12 +1,12 @@
 import React from 'react';
-import TextInputMask from 'react-native-text-input-mask';
+import MaskInput, {Mask} from 'react-native-mask-input';
 import {KeyboardTypeOptions, StyleSheet, Text, View} from 'react-native';
 import {Themes} from 'src/theme';
 import {useSelector} from 'src/hooks/useSelector';
 import {themeTypeSelector} from 'src/modules/app/selectors';
 
 interface InputAdapterProps {
-  mask?: string;
+  mask: Mask;
   containerStyle?: object;
   keyboardType?: KeyboardTypeOptions;
   label?: string;
@@ -29,9 +29,9 @@ const InputAdapter = ({
   return (
     <View style={[styles.container, containerStyle]}>
       {label && <Text style={styles.label}>{label}</Text>}
-      <TextInputMask
-        onChangeText={(formatted, extracted) => {
-          onChangeText(extracted);
+      <MaskInput
+        onChangeText={(masked, unmasked, obfuscated) => {
+          onChangeText(unmasked);
         }}
         placeholder={placeholder}
         placeholderTextColor={theme.colors.placeholder}

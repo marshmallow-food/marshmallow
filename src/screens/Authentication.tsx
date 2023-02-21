@@ -18,6 +18,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 import ArrowLeft from 'src/components/icons/ArrowLeft';
+import {phoneMask} from 'src/lib/mask';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -74,9 +75,9 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
               <InputAdapter
                 value={value}
                 label={t('phoneNumber')}
-                mask={'+7 [000] [000]-[00]-[00]'}
+                mask={phoneMask}
                 keyboardType={'phone-pad'}
-                onChangeText={(extracted) => onChange(`+7${extracted}`)}
+                onChangeText={(unmasked) => onChange(unmasked)}
                 placeholder="+7"
               />
             )}
@@ -94,7 +95,12 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
               paddingTop: 13,
               paddingBottom: 13,
             }}
-            textStyle={{fontSize: 20, textAlign: 'center'}}
+            textStyle={{
+              fontSize: 20,
+              textAlign: 'center',
+              fontFamily: 'Lato-Semibold',
+              lineHeight: 24,
+            }}
           />
         </Wrapper>
       </Container>

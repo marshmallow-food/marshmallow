@@ -46,6 +46,7 @@ export const AuthStack = () => {
         title: t('signIn'),
         headerTitleAlign: 'center',
         headerShadowVisible: false,
+        headerTitleStyle: {fontFamily: 'Lato-Bold'},
       }}>
       <Screen name="splash" component={SplashScreen} />
       <Screen
