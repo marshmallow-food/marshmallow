@@ -9,7 +9,7 @@ const CommonTheme = {
 export const LightTheme = {
   barStyle: 'dark-content' as StatusBarStyle,
   colors: {
-    background: Colors.offwhite,
+    background: Colors.white,
     text: Colors.black,
     ...Colors,
   },
@@ -22,7 +22,7 @@ export const DarkTheme = {
   barStyle: 'light-content' as StatusBarStyle,
   colors: {
     background: Colors.black,
-    text: Colors.offwhite,
+    text: Colors.white,
     ...Colors,
   },
   ...CommonTheme,

@@ -5,13 +5,13 @@ import {
 } from '@react-navigation/native-stack';
 import React from 'react';
 import {SplashScreen} from '../screens/SplashScreen';
-import {MainBottomTab} from './MainBottomTab';
+import {SettingsScreen} from '../screens/Settings';
 
 const {Screen, Navigator} = createNativeStackNavigator<AppStackParamList>();
 
 export type AppStackParamList = {
   splash: undefined;
-  mainBottomTab: undefined;
+  settings: undefined;
 };
 
 export type AppStackNavigationProp<RouteName extends keyof AppStackParamList> =
@@ -32,7 +32,7 @@ export const AppStack = () => {
   return (
     <Navigator screenOptions={{headerShown: false}}>
       <Screen name="splash" component={SplashScreen} />
-      <Screen name="mainBottomTab" component={MainBottomTab} />
+      <Screen name="settings" component={SettingsScreen} />
     </Navigator>
   );
 };

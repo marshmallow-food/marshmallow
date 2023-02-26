@@ -1,4 +1,4 @@
-import {ThemeType} from '../../theme';
+import {ThemeType} from 'src/theme';
 import {createAction} from 'typesafe-actions';
 
 export const setAppTheme = createAction(

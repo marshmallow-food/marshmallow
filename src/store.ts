@@ -1,15 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {configureStore} from '@reduxjs/toolkit';
-import {
-  applyMiddleware,
-  combineReducers,
-  Dispatch,
-  MiddlewareAPI,
-} from 'redux';
+import {combineReducers} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
 import {appReducer} from './modules/app/reducer';
-import {RootAction} from './types/actions';
+import {authReducer} from './modules/auth/reducer';
 
 /*
  *--------------------------------------------------*
@@ -23,41 +17,28 @@ const appPersistConfig = {
   key: 'app',
 };
 
+const authPersistConfig = {
+  storage: AsyncStorage,
+  key: 'auth',
+};
+
 export const reducers = {
   app: persistReducer(appPersistConfig, appReducer),
+  auth: persistReducer(authPersistConfig, authReducer),
 };
 
 export const rootReducer = combineReducers(reducers);
 
-const appMiddleware =
-  (_store: MiddlewareAPI) => (next: Dispatch) => (action: RootAction) => {
-    //   var state = store.getState()
-    //   switch (action.type) {
-    //     case actions.ADD_TASK:
-    //       *do something*
-    //       break;
-    //   }
-    next(action);
-  };
-
-const sagaMiddleware = createSagaMiddleware();
-
-const middlewares = [sagaMiddleware, appMiddleware];
-const enhancers = [applyMiddleware(...middlewares)];
-
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  //enhancers: compose(...enhancers),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-// sagaMiddleware.run(sagas);
 
 export const persistor = persistStore(store);
 

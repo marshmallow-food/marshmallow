@@ -1,13 +1,9 @@
 import {AppNavigations, AppStackRoutes} from './navigators/AppStack';
 import {AuthNavigations, AuthStackRoutes} from './navigators/AuthStack';
-import {
-  MainBottomTabNavigations,
-  MainBottomTabRoutes,
-} from './navigators/MainBottomTab';
 
-export type Navigations = AppNavigations & MainBottomTabNavigations;
+export type Navigations = AppNavigations;
 
-export type Routes = AppStackRoutes & MainBottomTabRoutes;
+export type Routes = AppStackRoutes;
 
 export type AuthenticationNavigations = AuthNavigations;
 

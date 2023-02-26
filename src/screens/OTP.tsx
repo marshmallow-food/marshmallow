@@ -72,7 +72,7 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
       <TouchableWithoutFeedback onPress={hideKeyboard} style={{flex: 1}}>
         <KeyboardAvoidingView
           style={{flex: 1}}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          behavior={Platform.select({ios: 'padding'})}
           keyboardVerticalOffset={keyboardActive ? 100 : 0}>
           <Wrapper>
             <Controller
