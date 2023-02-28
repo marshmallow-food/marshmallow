@@ -12,13 +12,14 @@ import Button from '../components/dumb/Button';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '../navigators/AuthStack';
 import {Themes} from '../theme';
-import {useSelector} from '../hooks/useSelector';
+import {useDispatch, useSelector} from '../hooks/useSelector';
 import {themeTypeSelector} from '../modules/app/selectors';
 import {useForm, Controller} from 'react-hook-form';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 import ArrowLeft from '../components/icons/ArrowLeft';
 import {phoneMask} from '../lib/mask';
+import {requestOTP} from 'src/modules/auth/actions';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -44,6 +45,7 @@ type AuthPageProps = NativeStackScreenProps<
 
 const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
   const theme = Themes[useSelector(themeTypeSelector)];
   const {
     control,
@@ -55,8 +57,10 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
     },
   });
 
-  const onSubmit = () => {
-    navigation.navigate('otp');
+  const onSubmit = (data: {phone: string}) => {
+    console.log(data);
+    dispatch(requestOTP.request(data));
+    //navigation.navigate('otp');
   };
 
   return (

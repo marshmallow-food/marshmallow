@@ -6,11 +6,13 @@ import {
 import React from 'react';
 import {SplashScreen} from '../screens/SplashScreen';
 import {SettingsScreen} from '../screens/Settings';
+import {HomeScreen} from '../screens/Home';
 
 const {Screen, Navigator} = createNativeStackNavigator<AppStackParamList>();
 
 export type AppStackParamList = {
   splash: undefined;
+  home: undefined;
   settings: undefined;
 };
 
@@ -32,6 +34,7 @@ export const AppStack = () => {
   return (
     <Navigator screenOptions={{headerShown: false}}>
       <Screen name="splash" component={SplashScreen} />
+      <Screen name="home" component={HomeScreen} />
       <Screen name="settings" component={SettingsScreen} />
     </Navigator>
   );

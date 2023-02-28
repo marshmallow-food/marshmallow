@@ -5,3 +5,5 @@ import * as authActions from '../modules/auth/actions';
 export type AppAction = ActionType<typeof appActions>;
 
 export type AuthAction = ActionType<typeof authActions>;
+
+export type RootAction = AppAction | AuthAction;
