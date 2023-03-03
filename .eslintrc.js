@@ -21,6 +21,6 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     quotes: [2, 'single', {avoidEscape: true}],
-    'max-len': ['warn', {code: 80}],
+    'max-len': ['warn', {code: 100}],
   },
 };
