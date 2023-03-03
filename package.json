@@ -78,6 +78,7 @@
     "prettier": "2.8.3",
     "react-native-dotenv": "^3.4.8",
     "react-native-mask-input": "^1.2.3",
+    "react-native-normalize": "^1.0.1",
     "react-native-svg": "^13.8.0",
     "react-native-svg-transformer": "^1.0.0",
     "react-test-renderer": "18.2.0",

@@ -17,6 +17,7 @@ interface ButtonProps {
   icon?: React.ReactNode;
   underlayColor?: string;
   disabled?: boolean;
+  dropShadow?: object;
 }
 
 const Button = ({

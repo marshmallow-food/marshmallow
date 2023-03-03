@@ -26,7 +26,6 @@ const SettingsPageComponent = ({
 }: SettingsPageProps): JSX.Element => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  console.log(navigation);
 
   return (
     <Container>

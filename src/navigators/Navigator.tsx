@@ -1,19 +1,18 @@
 import * as React from 'react';
-import {
-  NavigationContainer,
-  useNavigationContainerRef,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {AuthStack} from './AuthStack';
 import {AppStack} from './AppStack';
+import {useSelector} from 'src/hooks/useSelector';
+import {isAuthSelector} from 'src/modules/auth/selectors';
+import RNBootSplash from 'react-native-bootsplash';
 
 const AppRoute = () => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const navigationRef = useNavigationContainerRef();
+  const isAuth = useSelector(isAuthSelector);
 
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer onReady={() => RNBootSplash.hide()}>
       {/* Conditional stack navigator rendering based on login state */}
-      {isLoggedIn ? <AppStack /> : <AuthStack />}
+      {isAuth ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

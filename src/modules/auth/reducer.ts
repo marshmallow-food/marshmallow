@@ -4,7 +4,7 @@ import {requestOTP, verifyOTP} from './actions';
 
 export interface AuthState {
   isLoggedIn: boolean;
-  authToken: string | null;
+  token: string | null;
   phone: string | null;
   error: string | null;
   loading: boolean;
@@ -12,7 +12,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   isLoggedIn: false,
-  authToken: null,
+  token: null,
   phone: null,
   error: null,
   loading: false,
@@ -40,9 +40,11 @@ export const authReducer = createReducer<AuthState, AuthAction>(initialState)
     loading: true,
     error: null,
   }))
-  .handleAction(verifyOTP.success, (state) => ({
+  .handleAction(verifyOTP.success, (state, action) => ({
     ...state,
+    isLoggedIn: true,
     loading: false,
+    token: action.payload,
   }))
   .handleAction(verifyOTP.failure, (state, action) => ({
     ...state,

@@ -2,20 +2,24 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "assets/fonts/Lato-Bold.ttf",
-      "sha1": "d87be26789750e98f74f6e6b55d0321960ccb5e6"
+      "path": "assets/fonts/Comfortaa-Bold.ttf",
+      "sha1": "030d538c445730fb1ec262b0e2bd748cdfceb272"
     },
     {
-      "path": "assets/fonts/Lato-Medium.ttf",
-      "sha1": "70d69b43dc7cccd9e3f19df986c55de76b490b57"
+      "path": "assets/fonts/Comfortaa-Light.ttf",
+      "sha1": "59ba6ecb3d687de56df4e0c793bf2871456cbed1"
     },
     {
-      "path": "assets/fonts/Lato-Regular.ttf",
-      "sha1": "3e9518722d3c00a43ff0de25c2c95e14ddb7e0fa"
+      "path": "assets/fonts/Comfortaa-Medium.ttf",
+      "sha1": "eda88ba64df47e9d918b3926f9d84653a5a82bd7"
     },
     {
-      "path": "assets/fonts/Lato-Semibold.ttf",
-      "sha1": "4584ed18de1e6f7c90416c5641eaf90e3656129b"
+      "path": "assets/fonts/Comfortaa-Regular.ttf",
+      "sha1": "018c91b57e43873172a1767df40434cb56e130e4"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-SemiBold.ttf",
+      "sha1": "8aa11f225d34b7d4e25aec3ca6b5cae30a444ce8"
     }
   ]
 }

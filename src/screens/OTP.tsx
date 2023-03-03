@@ -16,13 +16,16 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {AuthStackParamList} from 'src/navigators/AuthStack';
-import {Themes} from '../theme';
-import {useSelector} from '../hooks/useSelector';
-import {themeTypeSelector} from '../modules/app/selectors';
+import {useDispatch, useSelector} from '../hooks/useSelector';
+import {themeSelector} from '../modules/app/selectors';
+import {phoneSelector} from '../modules/auth/selectors';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {otpMask} from '../lib/mask';
 import ArrowLeft from '../components/icons/ArrowLeft';
+import {verifyOTP} from 'src/modules/auth/actions';
+import normalize from 'react-native-normalize';
+import Header from 'src/components/dumb/Header';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -42,11 +45,14 @@ type OTPPageProps = NativeStackScreenProps<AuthStackParamList, 'otp'>;
 
 const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
   const {t} = useTranslation();
-  const theme = Themes[useSelector(themeTypeSelector)];
+  const dispatch = useDispatch();
+  const theme = useSelector(themeSelector);
+  const phone = useSelector(phoneSelector);
   const [keyboardActive, setKeyboardActive] = useState(false);
 
   const {
     control,
+    handleSubmit,
     formState: {isValid, isSubmitting},
   } = useForm({
     defaultValues: {
@@ -63,8 +69,14 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
     Keyboard.dismiss();
   };
 
-  const onSubmit = () => {
-    console.log('submitted');
+  const onSubmit = (data: {code: string}) => {
+    if (phone) {
+      const verifyData = {
+        ...data,
+        phone: phone,
+      };
+      dispatch(verifyOTP.request(verifyData));
+    }
   };
 
   return (
@@ -75,47 +87,72 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
           behavior={Platform.select({ios: 'padding'})}
           keyboardVerticalOffset={keyboardActive ? 100 : 0}>
           <Wrapper>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-                minLength: 4,
-              }}
-              render={({field: {onChange, onBlur, value}}) => (
-                <InputAdapter
-                  value={value}
-                  onBlur={onBlur}
-                  onFocus={showKeyboard}
-                  label={t('codeFromSMS')}
-                  mask={otpMask}
-                  keyboardType={'numeric'}
-                  onChangeText={(unmasked) => onChange(unmasked)}
-                  placeholder="0000"
-                />
-              )}
-              name="code"
-            />
+            <View style={{width: '100%'}}>
+              <Header
+                title={t('authorization')}
+                titleStyle={{textAlign: 'left', marginBottom: 10}}
+              />
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                  minLength: 4,
+                }}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <InputAdapter
+                    value={value}
+                    onBlur={onBlur}
+                    onFocus={showKeyboard}
+                    label={t('codeFromSMS')}
+                    mask={otpMask}
+                    keyboardType={'numeric'}
+                    onChangeText={(unmasked) => onChange(unmasked)}
+                    placeholder="0000"
+                  />
+                )}
+                name="code"
+              />
+            </View>
             <Button
               title={t('getCode')}
-              onPress={() => navigation.navigate('otp')}
+              onPress={handleSubmit(onSubmit)}
               disabled={!isValid || isSubmitting}
+              underlayColor={theme.colors.primaryFont}
               buttonStyle={{
                 width: '100%',
                 alignSelf: 'center',
-                backgroundColor: theme.colors.primary,
-                borderRadius: 10,
-                paddingTop: 13,
-                paddingBottom: 13,
+                backgroundColor: theme.colors.primaryFont,
+                borderRadius: normalize(40),
+                paddingTop: 18,
+                paddingBottom: 18,
+                shadowColor: '#000',
+                shadowOpacity: 0.25,
+                shadowOffset: {
+                  width: 0,
+                  height: 4,
+                },
+                shadowRadius: 8,
+                elevation: 13,
               }}
               titleStyle={{
-                fontSize: 20,
+                fontSize: normalize(13),
                 textAlign: 'center',
-                fontFamily: 'Lato-Semibold',
-                lineHeight: 24,
+                fontFamily: 'Comfortaa-Regular',
+                lineHeight: normalize(14),
                 color: theme.colors.white,
+                textTransform: 'uppercase',
               }}
               disabledButtonStyle={{
-                backgroundColor: 'rgba(249, 156, 0, 0.5)',
+                backgroundColor: theme.colors.buttonBlue,
+                color: theme.colors.white,
+                shadowColor: '#000',
+                shadowOpacity: 0.25,
+                shadowOffset: {
+                  width: 8,
+                  height: 8,
+                },
+                shadowRadius: 2,
+                elevation: 2,
               }}
             />
           </Wrapper>
@@ -127,7 +164,7 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
 
 const OTPScreenOptions: NativeStackNavigationOptions = {
   headerLeft: () => {
-    const theme = Themes[useSelector(themeTypeSelector)];
+    const theme = useSelector(themeSelector);
     const navigation = useNavigation();
 
     const handleBackButtonPress = () => {

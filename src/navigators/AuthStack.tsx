@@ -11,7 +11,6 @@ import {
 import {OTPScreen, OTPScreenOptions} from '../screens/OTP';
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
 
 const {Screen, Navigator} = createNativeStackNavigator<AuthStackParamList>();
 
@@ -38,15 +37,13 @@ export type AuthStackRoutes = {
 };
 
 export const AuthStack = () => {
-  const {t} = useTranslation();
   return (
     <Navigator
+      initialRouteName="welcome"
       screenOptions={{
         headerShown: true,
-        title: t('signIn'),
-        headerTitleAlign: 'center',
+        title: '',
         headerShadowVisible: false,
-        headerTitleStyle: {fontFamily: 'Lato-Bold'},
       }}>
       <Screen name="splash" component={SplashScreen} />
       <Screen

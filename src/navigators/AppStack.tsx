@@ -32,7 +32,7 @@ export type AppStackRoutes = {
 
 export const AppStack = () => {
   return (
-    <Navigator screenOptions={{headerShown: false}}>
+    <Navigator screenOptions={{headerShown: false}} initialRouteName="home">
       <Screen name="splash" component={SplashScreen} />
       <Screen name="home" component={HomeScreen} />
       <Screen name="settings" component={SettingsScreen} />

@@ -12,6 +12,7 @@
     "target": "esnext",
     "skipLibCheck": true,
     "baseUrl": ".",
+    "useUnknownInCatchVariables": false,
     "paths": {
       "src/*": ["src/*"]
     },

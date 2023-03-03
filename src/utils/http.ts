@@ -12,7 +12,7 @@ const http: AxiosInstance = axios.create({
 http.interceptors.request.use(
   async (config) => {
     const state = store.getState() as RootState;
-    const token = state.auth.authToken;
+    const token = state.auth.token;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
