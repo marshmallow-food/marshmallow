@@ -1,6 +1,5 @@
-'use strict';
-import {ThemeType} from '../../theme';
-import {AppAction} from '../../types/actions';
+import {ThemeType} from 'src/theme';
+import {AppAction} from 'src/types/actions';
 import {createReducer} from 'typesafe-actions';
 import {setAppTheme} from './actions';
 

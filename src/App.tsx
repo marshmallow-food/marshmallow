@@ -1,8 +1,7 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React, {memo, ReactNode} from 'react';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
-import {AuthStack} from './navigators/AuthStack';
+import AppRoute from './navigators/Navigator';
 import {store} from './store';
 import {ThemeProvider} from 'styled-components';
 import {useSelector} from './hooks/useSelector';
@@ -23,6 +22,7 @@ const AppThemeProvider = ({children}: {children: ReactNode | ReactNode[]}) => {
       ? systemThemeType
       : userSelectedThemeType;
   const theme = Themes[themeType];
+
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={theme.barStyle} />
@@ -35,9 +35,7 @@ const AppComponent = (): JSX.Element => {
   return (
     <Provider store={store}>
       <AppThemeProvider>
-        <NavigationContainer>
-          <AuthStack />
-        </NavigationContainer>
+        <AppRoute />
       </AppThemeProvider>
     </Provider>
   );
