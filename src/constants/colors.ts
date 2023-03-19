@@ -7,4 +7,5 @@ export const Colors = {
   fontMain: '#101829',
   placeholder: '#7E798987',
   error: '#C51C07',
+  textPrimary: '#4949FE',
 };

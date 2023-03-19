@@ -19,6 +19,7 @@ export const resources = {
       codeFromSMS: 'Verify code',
       required: 'This field is required',
       phoneMinLength: 'Phone is incorrect',
+      continue: 'Continue',
     },
   },
   ru: {
@@ -34,6 +35,7 @@ export const resources = {
       codeFromSMS: 'Введите код из SMS',
       required: 'Поле обязательно для заполнения',
       phoneMinLength: 'Неверный телефон',
+      continue: 'Далее',
     },
   },
   kz: {

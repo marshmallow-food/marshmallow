@@ -50,10 +50,11 @@ const WelcomePageComponent = ({navigation}: WelcomePageProps): JSX.Element => {
           titleStyle={{
             fontSize: normalize(13),
             textAlign: 'center',
-            fontFamily: 'Comfortaa-Regular',
-            color: theme.colors.primaryFont,
+            fontFamily: 'Comfortaa-Bold',
+            color: theme.colors.textPrimary,
             lineHeight: normalize(24),
             textTransform: 'uppercase',
+            letterSpacing: 3,
           }}
         />
       </Container>

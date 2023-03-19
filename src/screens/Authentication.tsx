@@ -21,8 +21,8 @@ import {useNavigation} from '@react-navigation/native';
 import ArrowLeft from '../components/icons/ArrowLeft';
 import {phoneMask} from '../lib/mask';
 import {requestOTP} from 'src/modules/auth/actions';
-import Header from 'src/components/dumb/Header';
 import normalize from 'react-native-normalize';
+import GradientButton from 'src/components/dumb/GradientButton';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -85,10 +85,6 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
           keyboardVerticalOffset={keyboardActive ? 100 : 0}>
           <Wrapper>
             <View style={{width: '100%'}}>
-              <Header
-                title={t('authorization')}
-                titleStyle={{textAlign: 'left', marginBottom: 10}}
-              />
               <Controller
                 control={control}
                 rules={{
@@ -105,32 +101,26 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
                     keyboardType={'phone-pad'}
                     onBlur={onBlur}
                     onChangeText={(unmasked) => onChange(unmasked)}
-                    placeholder="+7"
+                    placeholder="+7 700 000 00 00"
                   />
                 )}
                 name="phone"
               />
             </View>
-            <Button
+            <GradientButton
               title={t('getCode')}
               onPress={handleSubmit(onSubmit)}
               disabled={!isValid || isSubmitting}
-              underlayColor={theme.colors.primaryFont}
+              colors={['#45FEE8', '#4945FE']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 1}}
+              disabledColors={['#45FEE8', '#4945FE']}
               buttonStyle={{
                 width: '100%',
                 alignSelf: 'center',
-                backgroundColor: theme.colors.primaryFont,
                 borderRadius: normalize(40),
                 paddingTop: 18,
                 paddingBottom: 18,
-                shadowColor: '#000',
-                shadowOpacity: 0.25,
-                shadowOffset: {
-                  width: 0,
-                  height: 4,
-                },
-                shadowRadius: 8,
-                elevation: 13,
               }}
               titleStyle={{
                 fontSize: normalize(13),
@@ -143,14 +133,6 @@ const AuthScreen = ({navigation}: AuthPageProps): JSX.Element => {
               disabledButtonStyle={{
                 backgroundColor: theme.colors.buttonBlue,
                 color: theme.colors.white,
-                shadowColor: '#000',
-                shadowOpacity: 0.25,
-                shadowOffset: {
-                  width: 8,
-                  height: 8,
-                },
-                shadowRadius: 2,
-                elevation: 2,
               }}
             />
           </Wrapper>
@@ -176,6 +158,12 @@ const AuthenticationScreenOptions: NativeStackNavigationOptions = {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: theme.colors.inputGray,
+          paddingTop: 16,
+          paddingBottom: 16,
+          paddingLeft: 24,
+          paddingRight: 24,
+          borderRadius: 30,
         }}
         icon={<ArrowLeft />}
       />
