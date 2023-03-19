@@ -1,12 +1,6 @@
 import React, {memo} from 'react';
 import {useTranslation} from 'react-i18next';
-import {
-  SafeAreaView,
-  View,
-  ImageBackground,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import {SafeAreaView, View, ImageBackground, StyleSheet} from 'react-native';
 import styled from 'styled-components';
 import Button from 'src/components/dumb/Button';
 import {useSelector} from 'src/hooks/useSelector';
@@ -30,7 +24,6 @@ const WelcomePageComponent = ({navigation}: WelcomePageProps): JSX.Element => {
   const {t} = useTranslation();
   const theme = useSelector(themeSelector);
   const themeType = useSelector(themeTypeSelector);
-
   return (
     <ImageBackground
       source={
