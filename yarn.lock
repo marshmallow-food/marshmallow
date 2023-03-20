@@ -4430,6 +4430,16 @@
     "jest-message-util" "^29.4.1"
     "jest-util" "^29.4.1"
 
+"expo-haptics@^9.0.0":
+  "integrity" "sha512-jBYgclyBVuGiqFPxdYSpIE5OEpWodu1B8fsqDLVIOWjdACnKVGsaBpSF6W4Xq0wVRvoak7C4Oz7ISV08rtPMOw=="
+  "resolved" "https://registry.npmjs.org/expo-haptics/-/expo-haptics-9.0.0.tgz"
+  "version" "9.0.0"
+
+"expo-linear-gradient@^9.0.0":
+  "integrity" "sha512-LnW2u9OT6GeyC6T8qEGjFYfNSk4KIBAwU0aRSjM4Y8hckWqhtKngGDz46DqGmJBzvZMSKuZZvj5xKn794r54ag=="
+  "resolved" "https://registry.npmjs.org/expo-linear-gradient/-/expo-linear-gradient-9.2.0.tgz"
+  "version" "9.2.0"
+
 "extend-shallow@^2.0.1":
   "integrity" "sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug=="
   "resolved" "https://registry.npmjs.org/extend-shallow/-/extend-shallow-2.0.1.tgz"
@@ -7784,22 +7794,28 @@
   dependencies:
     "dotenv" "^16.0.3"
 
-"react-native-drop-shadow@^0.0.6":
-  "integrity" "sha512-eIFZoU7yhr90xB0/Gfuolt/Eelk0F+ohy3piutuYFA+xJx1xtJ/t9xWaaTPwTGXK+56CTnp8mAX4VPDz464NZg=="
-  "resolved" "https://registry.npmjs.org/react-native-drop-shadow/-/react-native-drop-shadow-0.0.6.tgz"
-  "version" "0.0.6"
-  dependencies:
-    "logkitty" "^0.7.1"
-
 "react-native-easy-icon@^1.0.10":
   "integrity" "sha512-6SBoYc1QXTuYYabbbkM/RTrwStFIaVWHosF0d6bcqPQaHSZ08OEGhQUp7zuVkvZBys8Pm3Kxqf+LG71QYW8otQ=="
   "resolved" "https://registry.npmjs.org/react-native-easy-icon/-/react-native-easy-icon-1.0.10.tgz"
   "version" "1.0.10"
 
+"react-native-gradient-buttons@^2.0.2":
+  "integrity" "sha512-XAuyLXSZGZSmFD7stLkoaKVUH6EY6QLU2pSp60vDXafu0VKkVUXH4tdooaYis8o2Zx7KyM22u1w3C3iC5oTduw=="
+  "resolved" "https://registry.npmjs.org/react-native-gradient-buttons/-/react-native-gradient-buttons-2.0.2.tgz"
+  "version" "2.0.2"
+  dependencies:
+    "expo-haptics" "^9.0.0"
+    "expo-linear-gradient" "^9.0.0"
+
 "react-native-gradle-plugin@^0.71.14":
   "integrity" "sha512-nnLawTZEPPRAKq92UqDkzoGgCBl9aa9zAihFHMwmwzn4WRVdK4O6Cd4XYiyoNOiQzx3Hh9k5WOckHE80C92ivQ=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.14.tgz"
   "version" "0.71.14"
+
+"react-native-linear-gradient@^2.6.2":
+  "integrity" "sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ=="
+  "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"
+  "version" "2.6.2"
 
 "react-native-mask-input@^1.2.3":
   "integrity" "sha512-RWx+gc1EaBslJWR6dsvGdILJ5XvnvZuyEsgJaH9uAMukB3Z9eOlxra1E7Ovck8NSMVcYWpBB/lzojO4LwqqXgA=="
@@ -7854,7 +7870,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.71 || 1000.0.0", "react-native@>=0.56.0", "react-native@>=0.59", "react-native@>=0.59.0", "react-native@>=0.61.5", "react-native@>=0.62.2", "react-native@>=0.65.0", "react-native@0.71.2":
+"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.71 || 1000.0.0", "react-native@>= 0.55.x", "react-native@>=0.56.0", "react-native@>=0.59", "react-native@>=0.59.0", "react-native@>=0.62.2", "react-native@>=0.65.0", "react-native@0.71.2":
   "integrity" "sha512-ZSianM+j+09LoEdVIhrAP/uP8sQhT7dH6olCqM2xlpxmfCgA5NubsK6NABIuZiBlmmqjigyijm5Y/GhBIHDvEg=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.71.2.tgz"
   "version" "0.71.2"
@@ -7928,7 +7944,7 @@
     "react-shallow-renderer" "^16.15.0"
     "scheduler" "^0.23.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>=16.4.1", "react@>=17.0.0", "react@15.x || 16.x || 17.x || 18.x", "react@18.2.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>= 16.x", "react@>=16.4.1", "react@>=17.0.0", "react@15.x || 16.x || 17.x || 18.x", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

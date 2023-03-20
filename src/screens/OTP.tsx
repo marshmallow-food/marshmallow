@@ -25,7 +25,7 @@ import {otpMask} from '../lib/mask';
 import ArrowLeft from '../components/icons/ArrowLeft';
 import {verifyOTP} from 'src/modules/auth/actions';
 import normalize from 'react-native-normalize';
-import Header from 'src/components/dumb/Header';
+import GradientButton from 'src/components/dumb/GradientButton';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -88,10 +88,6 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
           keyboardVerticalOffset={keyboardActive ? 100 : 0}>
           <Wrapper>
             <View style={{width: '100%'}}>
-              <Header
-                title={t('authorization')}
-                titleStyle={{textAlign: 'left', marginBottom: 10}}
-              />
               <Controller
                 control={control}
                 rules={{
@@ -113,26 +109,20 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
                 name="code"
               />
             </View>
-            <Button
-              title={t('getCode')}
+            <GradientButton
+              title={t('continue')}
               onPress={handleSubmit(onSubmit)}
               disabled={!isValid || isSubmitting}
-              underlayColor={theme.colors.primaryFont}
+              colors={['#45FEE8', '#4945FE']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 1}}
+              disabledColors={['#45FEE8', '#4945FE']}
               buttonStyle={{
                 width: '100%',
                 alignSelf: 'center',
-                backgroundColor: theme.colors.primaryFont,
                 borderRadius: normalize(40),
                 paddingTop: 18,
                 paddingBottom: 18,
-                shadowColor: '#000',
-                shadowOpacity: 0.25,
-                shadowOffset: {
-                  width: 0,
-                  height: 4,
-                },
-                shadowRadius: 8,
-                elevation: 13,
               }}
               titleStyle={{
                 fontSize: normalize(13),
@@ -145,14 +135,6 @@ const OTPPageComponent = ({navigation}: OTPPageProps): JSX.Element => {
               disabledButtonStyle={{
                 backgroundColor: theme.colors.buttonBlue,
                 color: theme.colors.white,
-                shadowColor: '#000',
-                shadowOpacity: 0.25,
-                shadowOffset: {
-                  width: 8,
-                  height: 8,
-                },
-                shadowRadius: 2,
-                elevation: 2,
               }}
             />
           </Wrapper>
