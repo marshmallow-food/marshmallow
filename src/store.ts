@@ -4,8 +4,9 @@ import {combineReducers} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
 import {appReducer} from './modules/app/reducer';
 import createSagaMiddleware from 'redux-saga';
-import {authReducer} from './modules/auth/reducer';
-import rootSaga from 'src/sagas/authSaga';
+import {authReducer} from './modules/auth/reducers';
+import rootSaga from 'src/sagas/rootSaga';
+import categoryReducer from 'src/modules/category/reducers';
 /*
  *--------------------------------------------------*
  * Persist config documentation
@@ -23,9 +24,15 @@ const authPersistConfig = {
   key: 'auth',
 };
 
+const categoryPersistConfig = {
+  storage: AsyncStorage,
+  key: 'category',
+};
+
 export const reducers = {
   app: persistReducer(appPersistConfig, appReducer),
   auth: persistReducer(authPersistConfig, authReducer),
+  category: persistReducer(categoryPersistConfig, categoryReducer),
 };
 
 export const rootReducer = combineReducers(reducers);

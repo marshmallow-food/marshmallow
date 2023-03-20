@@ -5,7 +5,7 @@ const SplashScreenComponent = (): JSX.Element => {
   const hideSplash = () => RNBootSplash.hide({fade: true});
 
   useEffect(() => {
-    setTimeout(hideSplash, 500);
+    setTimeout(hideSplash, 450);
   }, []);
   return <></>;
 };

@@ -26,7 +26,7 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response: AxiosResponse) => {
     // Handle the response data
-    return response.data;
+    return response;
   },
   (error) => {
     // Handle any errors that occur during the request
