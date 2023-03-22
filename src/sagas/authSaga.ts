@@ -15,12 +15,12 @@ function* handleRequestOTP({payload}: ActionType<typeof requestOTP.request>) {
 
 function* handleVerifyOTP({payload}: ActionType<typeof verifyOTP.request>) {
   try {
-    const response: {token: string} = yield call(
+    const response: {data: {token: string}} = yield call(
       http.post,
       '/auth/code',
       payload,
     );
-    yield put(verifyOTP.success(response.token));
+    yield put(verifyOTP.success(response.data.token));
   } catch (error) {
     yield put(verifyOTP.failure(error));
   }

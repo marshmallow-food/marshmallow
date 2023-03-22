@@ -18,6 +18,7 @@ const SearchInput = ({placeholder, onChangeText, value}: SearchInputProps) => {
         style={styles.input}
         placeholder={placeholder}
         onChangeText={onChangeText}
+        scrollEnabled={false}
         value={value}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

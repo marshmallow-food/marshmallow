@@ -5,7 +5,6 @@ import {AppStack} from './AppStack';
 import {useSelector} from 'src/hooks/useSelector';
 import {isAuthSelector} from 'src/modules/auth/selectors';
 import RNBootSplash from 'react-native-bootsplash';
-import {SplashScreen} from 'src/screens/SplashScreen';
 
 const AppRoute = () => {
   const isAuth = useSelector(isAuthSelector);
