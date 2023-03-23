@@ -6,7 +6,7 @@ import {AxiosResponse} from 'axios';
 
 function* handleRequestOTP({payload}: ActionType<typeof requestOTP.request>) {
   try {
-    const response: AxiosResponse = yield call(http.post, '/auth', payload);
+    const response: AxiosResponse = yield call(http.post, '/product', payload);
     yield put(requestOTP.success(response.data));
   } catch (error) {
     yield put(requestOTP.failure(error));
@@ -17,7 +17,7 @@ function* handleVerifyOTP({payload}: ActionType<typeof verifyOTP.request>) {
   try {
     const response: {data: {token: string}} = yield call(
       http.post,
-      '/auth/code',
+      '/product/code',
       payload,
     );
     yield put(verifyOTP.success(response.data.token));

@@ -11,15 +11,23 @@ export interface SubCategoryCardProps {
   title: string;
   img: {uri: string};
   onPress: () => void;
+  tileSize: number;
 }
 
-const SubCategoryCard = ({title, img, onPress}: SubCategoryCardProps) => {
+const SubCategoryCard = ({
+  title,
+  img,
+  onPress,
+  tileSize,
+}: SubCategoryCardProps) => {
   return (
-    <TouchableOpacity style={styles.tileContainer} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.tileContainer, {width: tileSize, height: 150}]}
+      onPress={onPress}>
       <ImageBackground
         source={img}
         resizeMode="cover"
-        style={styles.image}
+        style={[styles.image, {width: tileSize, height: 150}]}
         imageStyle={{
           borderRadius: 10,
         }}></ImageBackground>
@@ -44,16 +52,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   tileContainer: {
-    flex: 1 / 3,
-    height: 150,
     borderRadius: 10,
     position: 'relative',
   },
   image: {
     flex: 1,
     borderRadius: 10,
-    height: 150,
-    width: '100%',
     position: 'absolute',
   },
 });

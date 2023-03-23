@@ -1,5 +1,4 @@
 import React, {memo, useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
 import {
   View,
   Platform,
@@ -11,6 +10,7 @@ import {
   Text,
   FlatList,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import styled from 'styled-components';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -91,7 +91,9 @@ const HomePageComponent = ({navigation}: HomePageProps): JSX.Element => {
     return data;
   };
 
+  const screenWidth = Dimensions.get('window').width - 56;
   const numColumns = 3;
+  const tileSize = screenWidth / numColumns;
 
   const HomeHeader = () => {
     return (
@@ -155,7 +157,13 @@ const HomePageComponent = ({navigation}: HomePageProps): JSX.Element => {
                             <SubCategoryCard
                               title={item.name}
                               img={{uri: item.image_url}}
-                              onPress={() => console.log(item)}
+                              tileSize={tileSize}
+                              onPress={() =>
+                                navigation.push('products', {
+                                  subcategory: item.name,
+                                  subcategory_id: item.id,
+                                })
+                              }
                             />
                           );
                         }}
