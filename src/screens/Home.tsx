@@ -25,6 +25,7 @@ import Header from 'src/components/dumb/Header';
 import SubCategoryCard from 'src/components/dumb/SubCategoryCard';
 import {categorySelector} from 'src/modules/category/selectors';
 import {useSelector} from 'react-redux';
+import User from 'src/components/icons/User';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -105,7 +106,7 @@ const HomePageComponent = ({navigation}: HomePageProps): JSX.Element => {
             start={{x: 0, y: 0}}
             end={{x: 1, y: 1}}
             style={styles.userIcon}>
-            <Icon name="user" size={40} style={styles.icon} />
+            <User />
           </LinearGradient>
         </TopBar>
         <Search>
