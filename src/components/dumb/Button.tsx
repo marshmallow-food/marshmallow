@@ -43,9 +43,9 @@ const Button = ({
       underlayColor={underlayColor}
       onPress={onPress}
       disabled={disabled}>
-      <View>
-        {icon}
+      <View style={styles.btnWrapper}>
         {title ? <Text style={dynamicTitleStyle}>{title}</Text> : null}
+        {icon}
       </View>
     </TouchableHighlight>
   );
@@ -58,6 +58,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+  },
+  btnWrapper: {
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
   },
 });
 
