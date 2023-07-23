@@ -160,6 +160,12 @@ const OTPScreenOptions: NativeStackNavigationOptions = {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: theme.colors.inputGray,
+          paddingTop: 16,
+          paddingBottom: 16,
+          paddingLeft: 24,
+          paddingRight: 24,
+          borderRadius: 30,
         }}
         icon={<ArrowLeft />}
       />

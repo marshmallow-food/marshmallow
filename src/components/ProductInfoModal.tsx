@@ -5,7 +5,6 @@ import {
   View,
   TouchableOpacity,
   Text,
-  SafeAreaView,
 } from 'react-native';
 import React, {memo, useCallback, useEffect, useState} from 'react';
 import {getProductInfoById, IProductInfo} from 'src/services/product/product';
