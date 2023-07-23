@@ -1,4 +1,4 @@
-import {StyleSheet, Image, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import React, {memo} from 'react';
 import {IProduct} from 'src/services/product/product';
 import Button from 'src/components/dumb/Button';
@@ -27,7 +27,7 @@ const ProductCard = ({product, tileSize, onPress}: ProductCardProps) => {
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.size}>{`${size} ${measure}`}</Text>
       <Button
-        title={product.price}
+        title={price}
         titleStyle={{
           color: theme.colors.textPrimary,
           fontFamily: 'Comfortaa-Bold',
@@ -40,7 +40,7 @@ const ProductCard = ({product, tileSize, onPress}: ProductCardProps) => {
           paddingVertical: 8,
         }}
         underlayColor={theme.colors.white}
-        onPress={() => console.log('df')}
+        onPress={() => console.log(id)}
         icon={<Plus />}
       />
     </TouchableOpacity>

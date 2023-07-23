@@ -7,7 +7,7 @@ import {isAuthSelector} from 'src/modules/auth/selectors';
 import RNBootSplash from 'react-native-bootsplash';
 
 const AppRoute = () => {
-  const isAuth = true; //useSelector(isAuthSelector);
+  const isAuth = useSelector(isAuthSelector);
 
   return (
     <NavigationContainer onReady={() => RNBootSplash.hide()}>
