@@ -30,7 +30,6 @@ import ArrowLeft from '../components/icons/ArrowLeft';
 import {AppStackParamList} from 'src/navigators/AppStack';
 import {getProductsBySubCategory, IProduct} from 'src/services/product/product';
 import ProductCard from 'src/components/ProductCard';
-import normalize from 'react-native-normalize';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -83,10 +82,6 @@ const ProductsPage = ({route, navigation}: ProductsPageProps): JSX.Element => {
   const handleProductPress = useCallback((productId: number) => {
     navigation.push('product', {productId: productId});
   }, []);
-
-  const showKeyboard = () => {
-    setKeyboardActive(true);
-  };
 
   const hideKeyboard = () => {
     setKeyboardActive(false);

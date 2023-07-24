@@ -11,7 +11,8 @@ import {Themes} from './theme';
 import * as Sentry from '@sentry/react-native';
 
 Sentry.init({
-  dsn: 'https://ad98ed3a950d42ba91e1dde3c8e4ea18@o4504612332306432.ingest.sentry.io/4504612333879296',
+  dsn:
+    'https://3de9fad4af1d41f4ba37d75a00077bc2@o4504612332306432.ingest.sentry.io/4504612333879296',
   normalizeDepth: 10,
 });
 
